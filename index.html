@@ -39,9 +39,9 @@
                 <a href="#about" class="btn btn-secondary">Узнать больше</a>
             </div>
             <div class="hero-stats">
-                <div class="stat"><span class="stat-number">2-3</span><span class="stat-label">часа</span></div>
-                <div class="stat"><span class="stat-number">6-10</span><span class="stat-label">мужчин</span></div>
-                <div class="stat"><span class="stat-number">0</span><span class="stat-label">телефонов</span></div>
+                <div class="stat"><span class="stat-number">+20%</span><span class="stat-label">тестостерон</span></div>
+                <div class="stat"><span class="stat-number">3 часа</span><span class="stat-label">без мыслей</span></div>
+                <div class="stat"><span class="stat-number">−23%</span><span class="stat-label">кортизол</span></div>
             </div>
         </div>
         <div class="scroll-indicator"><span>Листай вниз</span><div class="scroll-arrow"></div></div>
@@ -444,13 +444,15 @@
                 <h2>Оставь контакт</h2>
                 <p class="cta-subtitle">Мы сообщим, когда будут ближайшие свободные даты</p>
                 
-                <form class="cta-form" id="waitlist-form">
+                <form class="cta-form" id="waitlist-form" action="https://formspree.io/f/emotiongenerator@gmail.com" method="POST">
+                    <input type="hidden" name="_subject" value="Новая заявка КОЛУН">
                     <div class="form-row">
                         <input type="text" name="name" placeholder="Твоё имя" required>
                         <input type="text" name="telegram" placeholder="@username в Telegram" required>
                     </div>
                     <button type="submit" class="btn btn-primary btn-large">Записаться</button>
                 </form>
+                <p class="form-note" id="form-success" style="display: none; color: #4CAF50; margin-top: 1rem;">✓ Заявка отправлена! Скоро свяжемся.</p>
                 
                 <div class="cta-contact">
                     <p>Хочешь узнать больше?</p>

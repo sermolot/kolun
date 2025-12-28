@@ -263,16 +263,20 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 1;
     text-align: center;
     color: var(--color-white);
-    padding: 0 20px;
+    padding: 40px 20px;
     max-width: 900px;
 }
 
 .hero-tagline {
+    display: inline-block;
     font-size: 1rem;
     text-transform: uppercase;
     letter-spacing: 4px;
     margin-bottom: 1rem;
     opacity: 0.9;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 8px 20px;
+    border-radius: 4px;
 }
 
 .hero-title {
@@ -281,14 +285,19 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     letter-spacing: 8px;
     margin-bottom: 1.5rem;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.7), 0 0 30px rgba(0,0,0,0.5);
 }
 
 .hero-subtitle {
+    display: inline-block;
     font-size: clamp(1.1rem, 2.5vw, 1.4rem);
     margin-bottom: 2.5rem;
     opacity: 0.95;
     line-height: 1.8;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 15px 25px;
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
 }
 
 .hero-cta {
@@ -300,11 +309,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-stats {
-    display: flex;
+    display: inline-flex;
     justify-content: center;
-    gap: 4rem;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(255,255,255,0.2);
+    gap: 3rem;
+    padding: 20px 30px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    border-radius: 12px;
 }
 
 .stat {

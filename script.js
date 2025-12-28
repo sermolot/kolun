@@ -66,27 +66,50 @@ faqItems.forEach(item => {
 const waitlistForm = document.getElementById('waitlist-form');
 
 if (waitlistForm) {
-    waitlistForm.addEventListener('submit', function(e) {
+    waitlistForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         
         const formData = new FormData(this);
-        const data = {
-            name: formData.get('name'),
-            telegram: formData.get('telegram')
-        };
+        const telegram = formData.get('telegram');
+        const name = formData.get('name');
         
         // Validate telegram
-        if (!data.telegram || data.telegram.trim().length < 3) {
+        if (!telegram || telegram.trim().length < 3) {
             alert('Пожалуйста, укажи Telegram для связи');
             return;
         }
         
-        // Here you would normally send data to server
-        // For now, show success message
-        alert(`Отлично, ${data.name}! Ты в списке ожидания. Напишем, как только назначим дату первого ретрита.`);
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Отправляю...';
+        submitBtn.disabled = true;
         
-        // Reset form
-        this.reset();
+        try {
+            const response = await fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                this.reset();
+                document.getElementById('form-success').style.display = 'block';
+                submitBtn.textContent = 'Отправлено ✓';
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    document.getElementById('form-success').style.display = 'none';
+                }, 5000);
+            } else {
+                throw new Error('Ошибка отправки');
+            }
+        } catch (error) {
+            alert('Не удалось отправить. Напиши напрямую в Telegram: @Kolunpoleno');
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        }
     });
 }
 
@@ -149,9 +172,13 @@ const statsObserver = new IntersectionObserver((entries) => {
         if (entry.isIntersecting) {
             const statNumbers = entry.target.querySelectorAll('.stat-number');
             statNumbers.forEach(stat => {
-                const target = parseInt(stat.textContent);
-                if (!isNaN(target) && target > 0) {
-                    animateCounter(stat, target);
+                const text = stat.textContent.trim();
+                // Only animate pure numbers, skip text like "+20%", "3 часа", "−23%"
+                if (/^\d+$/.test(text)) {
+                    const target = parseInt(text);
+                    if (!isNaN(target) && target > 0) {
+                        animateCounter(stat, target);
+                    }
                 }
             });
             statsObserver.unobserve(entry.target);
