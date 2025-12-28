@@ -1423,3 +1423,143 @@ h1, h2, h3, h4, h5, h6 {
         grid-template-columns: 1fr;
     }
 }
+
+/* ===== Science Section / Articles ===== */
+.science-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #f8f6f3 0%, #fff 100%);
+}
+
+.articles-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 3rem;
+}
+
+.science-article {
+    background: var(--color-white);
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: var(--shadow-md);
+    border-left: 4px solid var(--color-secondary);
+    transition: var(--transition);
+}
+
+.science-article:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+}
+
+.article-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.science-article h3 {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+}
+
+.article-content {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--color-text);
+}
+
+.article-content p {
+    margin-bottom: 1.2rem;
+}
+
+.article-content h4 {
+    font-size: 1.2rem;
+    color: var(--color-secondary);
+    margin: 2rem 0 1rem;
+}
+
+.article-content ul {
+    margin: 1rem 0 1.5rem 1.5rem;
+}
+
+.article-content li {
+    margin-bottom: 0.8rem;
+    position: relative;
+}
+
+.article-content li::marker {
+    color: var(--color-secondary);
+}
+
+.article-content blockquote {
+    background: linear-gradient(135deg, #f5f5dc 0%, #fff8dc 100%);
+    border-left: 4px solid var(--color-accent);
+    padding: 1.5rem 2rem;
+    margin: 2rem 0;
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+    color: var(--color-text);
+}
+
+.article-content blockquote p {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.article-content blockquote cite {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    font-style: normal;
+    margin-top: 0.5rem;
+}
+
+.article-content strong {
+    color: var(--color-primary);
+}
+
+.article-content em {
+    color: var(--color-secondary);
+    font-style: italic;
+}
+
+.science-summary {
+    background: var(--color-primary);
+    color: var(--color-white);
+    padding: 30px 40px;
+    border-radius: 12px;
+    margin-top: 3rem;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.science-summary strong {
+    color: var(--color-accent);
+}
+
+@media (max-width: 768px) {
+    .science-section {
+        padding: 60px 0;
+    }
+    
+    .science-article {
+        padding: 25px;
+    }
+    
+    .science-article h3 {
+        font-size: 1.3rem;
+    }
+    
+    .article-content {
+        font-size: 1rem;
+    }
+    
+    .article-content blockquote {
+        padding: 1rem 1.5rem;
+    }
+    
+    .science-summary {
+        padding: 20px 25px;
+    }
+}
