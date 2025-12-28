@@ -66,51 +66,33 @@ faqItems.forEach(item => {
 const waitlistForm = document.getElementById('waitlist-form');
 
 if (waitlistForm) {
-    waitlistForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        const formData = new FormData(this);
-        const telegram = formData.get('telegram');
-        const name = formData.get('name');
+    waitlistForm.addEventListener('submit', function(e) {
+        const telegram = this.querySelector('input[name="telegram"]').value;
+        const name = this.querySelector('input[name="name"]').value;
         
         // Validate telegram
         if (!telegram || telegram.trim().length < 3) {
+            e.preventDefault();
             alert('Пожалуйста, укажи Telegram для связи');
             return;
         }
         
+        // Show loading state
         const submitBtn = this.querySelector('button[type="submit"]');
-        const originalText = submitBtn.textContent;
         submitBtn.textContent = 'Отправляю...';
         submitBtn.disabled = true;
         
-        try {
-            const response = await fetch(this.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
-            
-            if (response.ok) {
-                this.reset();
-                document.getElementById('form-success').style.display = 'block';
-                submitBtn.textContent = 'Отправлено ✓';
-                setTimeout(() => {
-                    submitBtn.textContent = originalText;
-                    submitBtn.disabled = false;
-                    document.getElementById('form-success').style.display = 'none';
-                }, 5000);
-            } else {
-                throw new Error('Ошибка отправки');
-            }
-        } catch (error) {
-            alert('Не удалось отправить. Напиши напрямую в Telegram: @Kolunpoleno');
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-        }
+        // Form will submit normally to FormSubmit
     });
+}
+
+// Check for success redirect
+if (window.location.search.includes('success=1')) {
+    const successMsg = document.getElementById('form-success');
+    if (successMsg) {
+        successMsg.style.display = 'block';
+        successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
 }
 
 // ===== Intersection Observer for animations =====
